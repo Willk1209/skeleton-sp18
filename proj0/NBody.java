@@ -8,7 +8,7 @@ public class NBody{
 }
 }
 */
-//package Project0;
+package Proj0;
 
 
 
