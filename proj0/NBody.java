@@ -42,7 +42,7 @@ public class NBody {
 		StdDraw.clear();
 		StdDraw.picture(0,0,"./images/starfield.jpg");
 		for (Planet p:planets){
-			p.Draw();
+			p.draw();
 		}
 
 
