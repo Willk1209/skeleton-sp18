@@ -1,8 +1,8 @@
 public class ArrayDeque<T> {
-    public int size;
-    public T[] items;
-    public int nextFirst;
-    public int nextLast;
+    private int size;
+    private T[] items;
+    private int nextFirst;
+    private int nextLast;
     private int length;
 
     public ArrayDeque(){
@@ -102,15 +102,12 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index){
-        return this.items[index];
+        return items[index];
     }
 
 
 
-
-
-
-    public static void main(String[] args) {
+    private static void main(String[] args) {
         ArrayDeque<String> a = new ArrayDeque<String>();
         a.addFirst("1111");
         a.addFirst("2222");

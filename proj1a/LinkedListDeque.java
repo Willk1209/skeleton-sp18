@@ -1,11 +1,11 @@
 public class LinkedListDeque<T> {
-    public StuffNode sentinel;
-    public int size;
+    private StuffNode sentinel;
+    private int size;
 
-    public class StuffNode {
-        public StuffNode prev;
-        public T item;
-        public StuffNode next;
+    private class StuffNode {
+        private StuffNode prev;
+        private T item;
+        private StuffNode next;
 
         public StuffNode(StuffNode p, T i, StuffNode n) {
             prev = p;
@@ -27,11 +27,11 @@ public class LinkedListDeque<T> {
 
 
 
-    public StuffNode connectFirst() {
+    private StuffNode connectFirst() {
         return sentinel.next;
     }
 
-    public StuffNode connnectLast() {
+    private StuffNode connnectLast() {
         if (sentinel.prev != null) {
             return sentinel.prev;
         }
