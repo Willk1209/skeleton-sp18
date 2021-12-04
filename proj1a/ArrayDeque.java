@@ -3,6 +3,7 @@ public class ArrayDeque<T> {
     public T[] items;
     public int nextFirst;
     public int nextLast;
+    private int length;
 
     public ArrayDeque(){
         length = 8;
