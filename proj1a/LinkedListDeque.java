@@ -86,6 +86,9 @@ public class LinkedListDeque<T> {
     }
 
     public T removeFirst() {
+        if (size == 0){
+            return null;
+        }
         StuffNode p = sentinel;
         p.next.next.prev = p;
         T output = p.next.item;
@@ -95,6 +98,9 @@ public class LinkedListDeque<T> {
     }
 
     public T removeLast() {
+        if (size == 0){
+            return null;
+        }
         StuffNode p = sentinel;
         p.prev.prev.next = p;
         T output = p.prev.item;
@@ -137,8 +143,8 @@ public class LinkedListDeque<T> {
         a.addFirst("first");
         a.addLast("later");
         a.addLast("last");
-//        a.removeFirst();
-//        a.removeLast();
+        a.removeFirst();
+        a.removeLast();
         System.out.println(a.get(2));
         System.out.println(a.getRecursive(2));
     }
