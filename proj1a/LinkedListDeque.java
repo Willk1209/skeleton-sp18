@@ -1,13 +1,13 @@
-public class LinkedListDeque<GenType> {
+public class LinkedListDeque<T> {
     public StuffNode sentinel;
     public int size;
 
     public class StuffNode {
         public StuffNode prev;
-        public GenType item;
+        public T item;
         public StuffNode next;
 
-        public StuffNode(StuffNode p, GenType i, StuffNode n) {
+        public StuffNode(StuffNode p, T i, StuffNode n) {
             prev = p;
             item = i;
             next = n;
@@ -17,13 +17,14 @@ public class LinkedListDeque<GenType> {
         }
     }
 
-    public LinkedListDeque(GenType x) {
-        sentinel = new StuffNode(null, x, null);
-    }
-
     public LinkedListDeque() {
         sentinel = new StuffNode(null, null, null);
+        sentinel.prev = sentinel;
+        sentinel.next =sentinel;
+        size = 0;
     }
+
+
 
 
     public StuffNode connectFirst() {
@@ -38,7 +39,7 @@ public class LinkedListDeque<GenType> {
     }
 
 
-    public void addFirst(GenType x) {
+    public void addFirst(T x) {
 //        if (sentinel == null){
 //            sentinel = new StuffNode(null,"Start",null);
 //            return;
@@ -54,7 +55,7 @@ public class LinkedListDeque<GenType> {
         }
     }
 
-    public void addLast(GenType x) {
+    public void addLast(T x) {
 //        if (sentinel == null){
 //            sentinel = new StuffNode(null,100,null);
 //            return;
@@ -84,12 +85,63 @@ public class LinkedListDeque<GenType> {
         }
     }
 
-    public GenType removeFirst() {
+    public T removeFirst() {
         StuffNode p = sentinel;
         p.next.next.prev = p;
-        GenType output = p.next.item;
+        T output = p.next.item;
         p.next = p.next.next;
         size--;
         return output;
     }
+
+    public T removeLast() {
+        StuffNode p = sentinel;
+        p.prev.prev.next = p;
+        T output = p.prev.item;
+        p.prev = p.prev.prev;
+        size--;
+        return output;
+    }
+
+    public T get(int index){
+        if (size<index){
+            return null;
+        }
+
+        StuffNode p = sentinel;
+        for (int i = 0; i < index; i++){
+            p = p.next;
+        }
+        return p.next.item;
+    }
+
+    public T getRecursive(int index) {
+        if (size < index) {
+            return null;
+        }
+        return getRecursive(sentinel.next, index);
+    }
+    private T getRecursive(LinkedListDeque<T>.StuffNode a, int diff){
+        if (diff == 0){
+            return a.item;
+        }
+        else{
+            return getRecursive(a.next, diff - 1);
+        }
+    }
+
+
+    public static void main(String[] args) {
+        LinkedListDeque<String> a = new LinkedListDeque<>();
+        a.addFirst("second");
+        a.addFirst("first");
+        a.addLast("later");
+        a.addLast("last");
+//        a.removeFirst();
+//        a.removeLast();
+        System.out.println(a.get(2));
+        System.out.println(a.getRecursive(2));
+    }
+
+
 }
