@@ -17,44 +17,44 @@ public class LinkedListDeque<GenType> {
         }
     }
 
-    public LinkedListDeque(GenType x){
-        sentinel = new StuffNode(null, x,null);
-    }
-    public LinkedListDeque(){
-        sentinel =new StuffNode(null,null,null);
+    public LinkedListDeque(GenType x) {
+        sentinel = new StuffNode(null, x, null);
     }
 
+    public LinkedListDeque() {
+        sentinel = new StuffNode(null, null, null);
+    }
 
 
-    public StuffNode connectFirst(){
+    public StuffNode connectFirst() {
         return sentinel.next;
     }
-    public StuffNode connnectLast(){
+
+    public StuffNode connnectLast() {
         if (sentinel.prev != null) {
             return sentinel.prev;
-        }return sentinel;
+        }
+        return sentinel;
     }
 
 
-
-    public void addFirst(GenType x){
+    public void addFirst(GenType x) {
 //        if (sentinel == null){
 //            sentinel = new StuffNode(null,"Start",null);
 //            return;
 //        }
         StuffNode p = sentinel;
-        if (p.next != null){
-            p.next.prev = new StuffNode(p,x,p.next);
+        if (p.next != null) {
+            p.next.prev = new StuffNode(p, x, p.next);
             size++;
-        }
-        else {
+        } else {
             p.next = new StuffNode(p, x, p);
             p.prev = p.next;
             size++;
         }
     }
 
-    public void addLast(GenType x){
+    public void addLast(GenType x) {
 //        if (sentinel == null){
 //            sentinel = new StuffNode(null,100,null);
 //            return;
@@ -64,28 +64,27 @@ public class LinkedListDeque<GenType> {
         size++;
     }
 
-    public int size(){
+    public int size() {
         return size;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         if (this.size == 0) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    public void printDeque(){
+    public void printDeque() {
         StuffNode p = sentinel;
-        while ((p.next != null)&(p.next != sentinel)){
+        while ((p.next != null) & (p.next != sentinel)) {
             p = p.next;
-            System.out.print(p.item+" ");
+            System.out.print(p.item + " ");
         }
     }
 
-    public GenType removeFirst(){
+    public GenType removeFirst() {
         StuffNode p = sentinel;
         p.next.next.prev = p;
         GenType output = p.next.item;
@@ -93,17 +92,4 @@ public class LinkedListDeque<GenType> {
         size--;
         return output;
     }
-
-
-    
-
-
-//    public static void main(String[] args) {
-//        LinkedListDeque<String> a = new LinkedListDeque<String>();
-//        a.addLast("str1");
-//        a.addLast("str2");
-//        a.addLast("str3");
-////        a.addFirst(1);
-////        a.addFirst(-11);
-//    }
 }
