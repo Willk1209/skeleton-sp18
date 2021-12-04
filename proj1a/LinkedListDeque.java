@@ -136,7 +136,7 @@ public class LinkedListDeque<T> {
         }
     }
 
-
+/**
     public static void main(String[] args) {
         LinkedListDeque<String> a = new LinkedListDeque<>();
         a.addFirst("second");
@@ -148,6 +148,6 @@ public class LinkedListDeque<T> {
         System.out.println(a.get(2));
         System.out.println(a.getRecursive(2));
     }
-
+*/
 
 }
