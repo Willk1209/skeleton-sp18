@@ -21,6 +21,8 @@ public class ArrayDeque<T> {
     }
 
     public void addFirst(T item){
+
+
         if (nextFirst != 0) {
             items[nextFirst] = item;
             nextFirst--;
@@ -67,6 +69,18 @@ public class ArrayDeque<T> {
         }
     }
 
+//    private T[] resizing(){
+//        if (size > length){
+//            T[] new_items = (T[]) new Object[3*length];
+//            System.arraycopy(this.items,0,new_items,0,length);
+//            length *= 3;
+//            return new_items;
+//        }
+//        return this.items;
+//    }
+
+
+
     public T removeFirst(){
         if (nextFirst != length - 1) {
             T output = this.items[nextFirst+1];
@@ -105,8 +119,7 @@ public class ArrayDeque<T> {
         return items[index];
     }
 
-
-
+/**
     private static void main(String[] args) {
         ArrayDeque<String> a = new ArrayDeque<String>();
         a.addFirst("1111");
@@ -116,11 +129,12 @@ public class ArrayDeque<T> {
         a.addLast("5555");
         a.addLast("6666");
         a.addLast("7777");
+        a.addLast("8888");
         a.removeFirst();
         a.removeLast();
         a.removeLast();
         a.removeLast();
         a.printDeque();
     }
-
+*/
 }
