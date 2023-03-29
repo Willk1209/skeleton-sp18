@@ -50,7 +50,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> implements Itera
     public T dequeue() {
         // TODO: Dequeue the first item. Don't forget to decrease fillCount and update
         if (isEmpty()) {
-            throw new NoSuchElementException("Ring buffer underflow");
+            throw new RuntimeException("Ring buffer underflow");
         }
         T temp = rb[first];
         rb[first] = null;
