@@ -8,7 +8,7 @@ public class PercolationStats {
     private final int T;
     private Percolation pc;
     private double[] thresholds;
-    PercolationStats(int N, int T, PercolationFactory pf) {
+    public PercolationStats(int N, int T, PercolationFactory pf) {
         this.N = N;
         this.T = T;
         this.thresholds = new double[T];
