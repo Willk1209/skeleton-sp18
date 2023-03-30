@@ -40,28 +40,31 @@ public class PercolationStats {
         }
         return totalNum / T;
     }
-    public double stddev(double mean) {
+    public double stddev() {
         double totalDevSquare = 0.;
+        double mean = mean();
         for (double i : thresholds) {
             totalDevSquare = totalDevSquare + Math.pow((i - mean), 2);
         }
         return Math.sqrt(totalDevSquare / (T - 1));
     }
-    public double confidenceLow(double mean, double stddev) {
+    public double confidenceLow() {
+        double mean = mean();
+        double stddev = stddev();
         return (mean - 1.96 * stddev / Math.sqrt(T));
     }
-    public double confidenceHigh(double mean, double stddev) {
+    public double confidenceHigh() {
+        double mean = mean();
+        double stddev = stddev();
         return (mean + 1.96 * stddev / Math.sqrt(T));
     }
 
-//    public static void main(String[] args) {
-//        PercolationFactory pf = new PercolationFactory();
-//        PercolationStats ps = new PercolationStats(10, 20, pf);
-//        double mean = ps.mean();
-//        System.out.println(mean);
-//        double std = ps.stddev(ps.mean());
-//        System.out.println(std);
-//        System.out.println(ps.confidenceLow(mean, std));
-//        System.out.println(ps.confidenceHigh(mean, std));
-//    }
+    public static void main(String[] args) {
+        PercolationFactory pf = new PercolationFactory();
+        PercolationStats ps = new PercolationStats(10, 20, pf);
+        System.out.println(ps.mean());
+        System.out.println(ps.stddev());
+        System.out.println(ps.confidenceLow());
+        System.out.println(ps.confidenceHigh());
+    }
 }

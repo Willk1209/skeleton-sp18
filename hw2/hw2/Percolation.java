@@ -33,7 +33,7 @@ public class Percolation {
         }
         // Create two virtual helper point (top and bottom)
         if (row == 0) {
-            uf.union(index,N * N);
+            uf.union(index, N * N);
         }
 //        else if (row == N-1) {
 //            uf.union(index, N * N+1);
@@ -59,7 +59,7 @@ public class Percolation {
     }             // does the system percolate?
 
     private void validate(int row, int col) {
-        if (row < 0 || row >=N || col < 0 || col >=N) {
+        if (row < 0 || row >= N || col < 0 || col >= N) {
             System.out.println("ROW: " + row + ", COL: " + col);
             throw new IndexOutOfBoundsException("Row or column index is out of bounds.");
         }
