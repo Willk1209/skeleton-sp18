@@ -53,19 +53,58 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      */
     @Override
     public V get(K key) {
-        throw new UnsupportedOperationException();
+        int index = hash(key);
+//        V value = buckets[index].get(key);
+        return buckets[index].get(key);
     }
 
     /* Associates the specified value with the specified key in this map. */
     @Override
     public void put(K key, V value) {
-        throw new UnsupportedOperationException();
+        int index = hash(key, buckets.length);
+        if (get(key) == null) {
+            size = size + 1;
+        }
+        buckets[index].put(key, value);
+
+        if (loadFactor() > MAX_LF) {
+            resize(buckets.length * 2);
+        }
     }
+
+
+    private void resize(int newSize) {
+        ArrayMap<K, V>[] newBuckets = new ArrayMap[newSize];
+        for (int i = 0; i < newSize; i++) {
+            newBuckets[i] = new ArrayMap<>();
+        }
+
+        // Rehash all key-value pairs into the newBuckets
+        for (ArrayMap<K, V> singleBucket : buckets) {
+            for (K key : singleBucket) {
+                V value = singleBucket.get(key);
+                int newIndex = hash(key, newSize);
+                newBuckets[newIndex].put(key, value);
+            }
+        }
+
+        // Update buckets to the newBuckets
+        this.buckets = newBuckets;
+    }
+
+    // We need a new hash function that takes the number of buckets as a parameter
+    private int hash(K key, int numBuckets) {
+        if (key == null) {
+            return 0;
+        }
+        return Math.floorMod(key.hashCode(), numBuckets);
+    }
+
 
     /* Returns the number of key-value mappings in this map. */
     @Override
     public int size() {
-        throw new UnsupportedOperationException();
+        return size;
     }
 
     //////////////// EVERYTHING BELOW THIS LINE IS OPTIONAL ////////////////
